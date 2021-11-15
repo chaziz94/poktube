@@ -466,13 +466,13 @@ if($count == 0) {
 		
         <a class="action-button"		<?php 
                             if(!isset($_SESSION['username'])) {
-								echo "href=\"javascript:void(0)\" onclick=\"alert('Log in to subscribe!')\" title=\"subscribe to $Username's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
+								echo "href=\"javascript:void(0)\" onclick=\"alert('Log in to subscribe!')\" title=\"subscribe to $Uploader's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
 								<span class=\"action-button-text\">Subscribe</span>
-								<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Username's channel";
+								<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Uploader's channel";
 							} else if ($Uploader == $_SESSION['username']) {
-								echo "href=\"javascript:void(0)\" onclick=\"alert('Why are you trying to subscribe to yourself?')\" title=\"subscribe to $Username's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
+								echo "href=\"javascript:void(0)\" onclick=\"alert('Why are you trying to subscribe to yourself?')\" title=\"subscribe to $Uploader's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
 								<span class=\"action-button-text\">Subscribe</span>
-								<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Username's channel";
+								<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Uploader's channel";
 							} else {
 								$chanfetch = mysqli_query($connect, "SELECT * FROM users WHERE username='". $_SESSION['username'] ."'"); // calls for channel info
 								$cdf = mysqli_fetch_assoc($chanfetch);
@@ -480,21 +480,21 @@ if($count == 0) {
 								$learray = json_decode($Subscriptions);
 								//sphagetti code, but this makes it shut up if using an existing db.
 								if(!isset($Subscriptions) OR $Subscriptions == "") {
-									echo "href=\"/subscribe.php?user=".$Uploader."\" title=\"subscribe to $Username's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
+									echo "href=\"/subscribe.php?user=".$Uploader."\" title=\"subscribe to $Uploader's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
 									<span class=\"action-button-text\">Subscribe</span>
-									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Username's channel";
+									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Uploader's channel";
 								} else if(count(json_decode($Subscriptions)) == 0) {
-									echo "href=\"/subscribe.php?user=".$Uploader."\" title=\"subscribe to $Username's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
+									echo "href=\"/subscribe.php?user=".$Uploader."\" title=\"subscribe to $Uploader's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
 									<span class=\"action-button-text\">Subscribe</span>
-									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Username's channel";
+									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Uploader's channel";
 								} else if (in_array($Uploader, $learray)) {
-									echo "href=\"/unsubscribe.php?user=".$Uploader."\" title=\"unsubscribe from $Username's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
+									echo "href=\"/unsubscribe.php?user=".$Uploader."\" title=\"unsubscribe from $Uploader's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
 									<span class=\"action-button-text\">Unsubscribe</span>
-									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> from $Username's channel";
+									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> from $Uploader's channel";
 								} else {
-									echo "href=\"/subscribe.php?user=".$Uploader."\" title=\"subscribe to $Username's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
+									echo "href=\"/subscribe.php?user=".$Uploader."\" title=\"subscribe to $Uploader's channel\" style=\"line-height: 13px;\">					<span class=\"action-button-leftcap\"></span>
 									<span class=\"action-button-text\">Subscribe</span>
-									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Username's channel";
+									<span class=\"action-button-rightcap\" style=\"margin-right: 5px;\"></span></a> to $Uploader's channel";
 								}
 							}
                             ?> 
@@ -518,7 +518,7 @@ if($count == 0) {
 		<table id="exSubNavTable"><tr>
 		<td><a href="#" id="exRelatedLink" class="selectedNavLink" onclick="selectNavLink('exRelatedLink'); return false;">Related</a></td>
 		<!--<td align="center"><a href="#" id="exPlaylistLink" class="unSelectedNavLink eLink" onclick="showRelatedPlaylistContent(); return false;">Playlists</a></td>-->
-		<td align="right"><a href="#" id="exUserLink" class="unSelectedNavLink eLink" onclick="selectNavLink('exUserLink'); return false;"><span class="smallText"><?php echo $Username?>'s</span> Videos</a></td>
+		<td align="right"><a href="#" id="exUserLink" class="unSelectedNavLink eLink" onclick="selectNavLink('exUserLink'); return false;"><span class="smallText"><?php echo $Uploader?>'s</span> Videos</a></td>
 		</tr></table>
 		
 
@@ -541,7 +541,7 @@ if($count == 0) {
 			<span class="runtime"><?php echo $length ?></span>
 			</div>
 			<div class="facets">
-				<span class="grayText">From:</span> <a href="/profile.php?user=<?php echo $Username ?>"><?php echo $Username ?></a><br/>
+				<span class="grayText">From:</span> <a href="/profile.php?user=<?php echo $Uploader ?>"><?php echo $Uploader ?></a><br/>
 			</div>
 				<div class="smallText">
 				<b>&lt;&lt; Now Playing</b>
@@ -608,21 +608,21 @@ if($count == 0) {
 			
 			<div id="exUserDiv" style="display: none">
 			<table class="showingTable"><tr>
-	<td class="smallText"><?php $query = mysqli_query($connect, "SELECT COUNT(VideoID) FROM videodb WHERE `isApproved` = '1' AND `Uploader`='".$Username."';");
+	<td class="smallText"><?php $query = mysqli_query($connect, "SELECT COUNT(VideoID) FROM videodb WHERE `isApproved` = '1' AND `Uploader`='".$Uploader."';");
 		$vdf_alt = mysqli_fetch_assoc($query);
 		if ($vdf_alt['COUNT(VideoID)'] < 75) {
 			echo "Showing 1-".$vdf_alt['COUNT(VideoID)']." of ".$vdf_alt['COUNT(VideoID)'];
 		} else {
 			echo "Showing 1-75 of ".$vdf_alt['COUNT(VideoID)'];
 		}?></td>
-	<td align="right" class="smallText"><a href="/profile.php?user=<?php echo $Username?>&page=videos">See All Videos</a></td>
+	<td align="right" class="smallText"><a href="/profile.php?user=<?php echo $Uploader?>&page=videos">See All Videos</a></td>
 	</tr></table>
 
 		<div id="side_results" class="exploreContent" name="side_results" onscroll="render_full_side()">
 	
 			<?php				
 			$x = 1; 
-			$sql = mysqli_query($connect, "SELECT * FROM videodb WHERE `isApproved` = '1' AND `Uploader`='".$Username."' ORDER by `UploadDate` DESC"); //instructions for sql
+			$sql = mysqli_query($connect, "SELECT * FROM videodb WHERE `isApproved` = '1' AND `Uploader`='".$Uploader."' ORDER by `UploadDate` DESC"); //instructions for sql
 
 			while ($fetch = mysqli_fetch_assoc($sql)) { //go forward with instructions
 			if ($x == 76) {

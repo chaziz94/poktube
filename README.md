@@ -2,6 +2,8 @@
 
 You are free to use this code, but note that you should sanitize the code first before doing anything with it. We no longer are using this source code, and have instead writen a newer and better code.
 
+Nougatchi (or ryelow, are they the same fucks?) did not do anything in this project and I'm currently trying to get rid of him from the repo.
+
 ![Website](screenshot.png)
 
 ## How to set PokTube up (might not be proper)
